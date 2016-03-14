@@ -1,0 +1,73 @@
+"""
+   Author:      RJ Podeschi
+   Date:        2-27-15
+   Program:     PrizeDraw
+
+   Purpose:     To generate a set of randcom bib numbers to be used
+                for prizes at a race.
+"""
+
+# Program details
+progName = "PrizeDraw"
+version = "1.0"
+lastModified = "2-27-2015"
+author = "RJ Podeschi"
+
+def program_welcome():
+    print("Welcome to the Prize Draw!")
+    print("Version: " + version)
+    print("Last Modified: " + lastModified)
+    print("Author: " + author)
+
+
+# Libraries to import
+import random
+
+program_welcome()
+
+# Initialize variables
+validEndBibNum = True
+isDup = True
+
+print("Begin by entering the starting and ending bib numbers")
+
+startBibNum = int(input("What is the starting bib number?"))
+
+while validEndBibNum is True:
+    endBibNum = int(input("What is the ending bib number?"))
+    if endBibNum <= startBibNum:
+        print("You have entered a bib number that is smaller than the starting number. Please enter a new number.")
+        validEndBibNum = True
+    else:
+        validEndBibNum = False
+
+numPrizes = int(input("How many prizes are you awarding"))
+
+print("Confirm the following values:")
+print("Race Name: ")
+print("Starting Bib Number: " + str(startBibNum))
+print("Ending Bib Number: " + str(endBibNum))
+print("Number of race participants: " + str(numPrizes))
+print("-----------------------------------------")
+acceptResponses = input("If these values are correct, please type yes \n")
+if acceptResponses != "yes":
+    print("You should start over")
+
+arrayWinners = []
+
+for x in range(0, numPrizes):
+    arrayWinners.append(random.randint(startBibNum, endBibNum))
+    arrayWinners.sort()
+
+    arrayWinners = list(set(arrayWinners))
+
+countArrayWinners = len(arrayWinners)
+
+arrayWinners.sort()
+
+print("Below are " + str(countArrayWinners) + " prizes that have been chosen as prize winners. Winners are listed by bib number.")
+
+for y in range(0, len(arrayWinners)):
+    print(arrayWinners[y])
+
+
